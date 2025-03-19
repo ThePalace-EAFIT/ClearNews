@@ -1,80 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClearNews - Search</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: url('/static/images/background.jpg') no-repeat center center fixed;
-            background-size: cover;
-        }
-
-        .navbar {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .navbar-brand,
-        .nav-link {
-            color: white !important;
-        }
-
-        .search-container {
-            height: 80vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .shadow {
-            text-shadow: 3px 3px 5px #000000;
-        }
-
-        .form {
-            margin-bottom: 50px;
-        }
-    </style>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">ClearNews</a>
-            <div class="collapse navbar-collapse justify-content-end">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white" href="{% url 'search' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white" href="#">Login</a>
-                    </li>
-                </ul>
-            </div>
+{% block content %}
+<div class="search-container">
+    {% if user.is_authenticated %}
+    <h1 class="text-white text-center shadow">Verify the News You Read</h1>
+    <form class="w-50" action="{% url 'loading_view' %}" method="GET">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Enter news URL to be verified" name="verifyNew">
+            <button class="btn btn-primary" type="submit">Search</button>
         </div>
-    </nav>
-
-    <div class="search-container">
-        <h1 class="text-white text-center shadow">Search the Verified News</h1>
-        <form class="w-50 form" action="{% url 'search_news' %}" method="GET">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Enter news headline or URL" name="searchNew">
-                <button class="btn btn-primary" type="submit">Search</button>
-            </div>
-        </form>
-        <h1 class="text-white text-center shadow">Verify the News You Read</h1>
-        <form class="w-50" action="{% url 'loading_view' %}" method="GET">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Enter news URL to be verified" name="verifyNew">
-                <button class="btn btn-primary" type="submit">Search</button>
-            </div>
-        </form>
-    </div>
-</body>
-
-</html>
+    </form>
+    {% else %}
+    <h1 class="text-white text-center shadow">Search the Verified News</h1>
+    <form class="w-50 form" action="{% url 'search_news' %}" method="GET">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Enter news headline or URL" name="searchNew">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+    {% endif %}
+</div>
+{% endblock content %}
