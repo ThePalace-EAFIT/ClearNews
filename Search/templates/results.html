@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-white text-center shadow">Verification Results for: {{ query }}</h1>
+
+{% if results %}
+    {% for claim in results %}
+        <div class="card my-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ claim.text }}</h5>
+                {% for review in claim.claimReview %}
+                    <p class="card-text">
+                        <strong>Verificado por:</strong> {{ review.publisher.name }} <br>
+                        <strong>Calificación:</strong> {{ review.reviewRating.textualRating }} <br>
+                        <a href="{{ review.url }}" target="_blank" class="btn btn-primary">Ver artículo</a>
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p class="text-white text-center">No fact-checking results found for this URL.</p>
+{% endif %}
+{% endblock content %}
