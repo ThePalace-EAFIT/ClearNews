@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="search-container">
+    <h1 class="text-white text-center shadow">Search the Verified News</h1>
+    <form class="w-50 form" action="{% url 'search_news' %}" method="GET">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Enter news headline or URL" name="searchNew">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
