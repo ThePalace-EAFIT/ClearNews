@@ -1,24 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="text-white text-center shadow">Verification Results for: {{ query }}</h1>
+<div class="container">
+    <h1 class="text-white text-center shadow my-4">Verification Results for: "{{ query }}"</h1>
 
-{% if results %}
-    {% for claim in results %}
-        <div class="card my-3">
-            <div class="card-body">
-                <h5 class="card-title">{{ claim.text }}</h5>
-                {% for review in claim.claimReview %}
-                    <p class="card-text">
-                        <strong>Verificado por:</strong> {{ review.publisher.name }} <br>
-                        <strong>Calificación:</strong> {{ review.reviewRating.textualRating }} <br>
-                        <a href="{{ review.url }}" target="_blank" class="btn btn-primary">Ver artículo</a>
-                    </p>
-                {% endfor %}
+    {% if results %}
+        {% for claim in results %}
+            <div class="card my-3 shadow-lg">
+                <div class="card-body">
+                    <h5 class="card-title">{{ claim.text }}</h5>
+
+                    {% if claim.claimReview %}
+                        {% for review in claim.claimReview %}
+                            <p class="card-text">
+                                <strong>Verified by:</strong> {{ review.publisher.name }} <br>
+
+                                {% if review.reviewRating and review.reviewRating.textualRating %}
+                                    <strong>Rating:</strong> {{ review.reviewRating.textualRating }} <br>
+                                {% else %}
+                                    <strong>Rating:</strong> Not available <br>
+                                {% endif %}
+
+                                {% if review.languageCode == 'en' %}
+                                    <strong>Language:</strong> English<br>
+                                {% elif review.languageCode == 'es' %}
+                                    <strong>Language:</strong> Spanish<br>
+                                {% elif review.languageCode == 'pt' %}
+                                    <strong>Language:</strong> Portuguese<br>
+                                {% else %}
+                                    <strong>Language:</strong> {{ review.languageCode }}<br>
+                                {% endif %}
+
+                                <a href="{{ review.url }}" target="_blank" class="btn btn-primary mt-3">See article</a>
+                            </p>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-muted">No hay revisiones disponibles para esta afirmación.</p>
+                    {% endif %}
+                </div>
             </div>
-        </div>
-    {% endfor %}
-{% else %}
-    <p class="text-white text-center">No fact-checking results found for this URL.</p>
-{% endif %}
+        {% endfor %}
+    {% else %}
+        <p class="text-white text-center">No fact-checking results found for this query.</p>
+    {% endif %}
+</div>
 {% endblock content %}
