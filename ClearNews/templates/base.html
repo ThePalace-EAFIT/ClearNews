@@ -53,17 +53,17 @@
                         
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white" href="{% url 'search' %}">Verify</a>
+                            <a class="nav-link btn btn-primary text-white" href="{% url 'verification:verify_link' %}">Verify</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white" href="{% url 'searchloged' %}">Search</a>
+                            <a class="nav-link btn btn-primary text-white" href="{% url 'search' %}">Search</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-primary text-white" href="{% url 'logout' %}">Logout ({{ user.username }})</a>
                         </li> 
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white" href="{% url 'search' %}">Home</a>
+                            <a class="nav-link btn btn-primary text-white" href="{% url 'search' %}">Search</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-primary text-white" href="{% url 'login' %}">Login</a>

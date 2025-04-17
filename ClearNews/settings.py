@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Search',
+<<<<<<< Updated upstream
+=======
     'accounts',
+    'verification',
+>>>>>>> Stashed changes
 ]
 
 MIDDLEWARE = [

@@ -14,13 +14,8 @@
                         {% for review in claim.claimReview %}
                             <p class="card-text">
                                 <strong>Verified by:</strong> {{ review.publisher.name }} <br>
-
-                                {% if review.reviewRating and review.reviewRating.textualRating %}
-                                    <strong>Rating:</strong> {{ review.reviewRating.textualRating }} <br>
-                                {% else %}
-                                    <strong>Rating:</strong> Not available <br>
-                                {% endif %}
-
+                                <strong>Rating:</strong> {{ review.textualRating }} <br>
+                                <strong>Review Date:</strong> {{ review.reviewDate}} <br>
                                 {% if review.languageCode == 'en' %}
                                     <strong>Language:</strong> English<br>
                                 {% elif review.languageCode == 'es' %}

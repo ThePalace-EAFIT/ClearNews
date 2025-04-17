@@ -1,2 +1,9 @@
+<<<<<<< Updated upstream
 django 5.1.6
-requests 2.32.3
+=======
+django 
+requests
+python-dotenv
+openai
+requests
+>>>>>>> Stashed changes

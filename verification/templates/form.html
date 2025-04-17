@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center text-white">Verify with AI</h2>
+    <form method="post" action="{% url 'verification:process_link' %}" class="mt-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Verify</button>
+    </form>
+</div>
+{% endblock %}

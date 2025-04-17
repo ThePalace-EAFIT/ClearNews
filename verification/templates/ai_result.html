@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            Verification result
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Link evaluated:</h5>
+            <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
+            <h5 class="card-title">AI result:</h5>
+            <p>{{ result }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
