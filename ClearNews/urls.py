@@ -21,13 +21,9 @@ from Search.views import search_view, news_search, loading_view, search
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', search_view, name='search'),
-<<<<<<< Updated upstream
-
-=======
     path('search/', news_search, name='search_news'),
     path('loading/', loading_view, name='loading_view'),
     path('searchloged/', search, name='searchloged'),
     path('accounts/', include('accounts.urls')),
     path('verification/', include('verification.urls')),
->>>>>>> Stashed changes
 ]

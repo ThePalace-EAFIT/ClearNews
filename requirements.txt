@@ -1,9 +1,5 @@
-<<<<<<< Updated upstream
-django 5.1.6
-=======
 django 
 requests
 python-dotenv
 openai
 requests
->>>>>>> Stashed changes

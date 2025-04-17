@@ -1,1 +1,5 @@
-API.env
+/API.env
+/.env
+/*env
+*.pyc
+__pycache__/
