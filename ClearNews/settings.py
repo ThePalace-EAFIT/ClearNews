@@ -123,6 +123,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "Search/static"),
+    os.path.join(BASE_DIR, "ClearNews/static"),
 ]
 
 # Default primary key field type

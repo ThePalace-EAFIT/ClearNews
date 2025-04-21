@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,32 +48,45 @@
     <div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#">ClearNews</a>
+                <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}"> 
+                    <img src="{% static 'images/logo.png' %}" alt="Logo" width="30" height="30" class="d-inline-block align-top">
+                    ClearNews
+                </a>                
                 <div class="collapse navbar-collapse justify-content-end">
-                    <ul class="navbar-nav">
-                        
+                    <ul class="navbar-nav align-items-center">
                         {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white" href="{% url 'verification:verify_link' %}">Verify</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white" href="{% url 'search' %}">Search</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white" href="{% url 'logout' %}">Logout ({{ user.username }})</a>
-                        </li> 
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'verification:verify_link' %}">Verify</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'search' %}">Search</a>
+                            </li>
+                    
+                            <li class="nav-item">
+                                <span class="text-white mx-2">|</span>
+                            </li>
+                    
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'logout' %}">Logout  [{{ user.username }}] </a>
+                            </li>
                         {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white" href="{% url 'search' %}">Search</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white" href="{% url 'login' %}">Login</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white" href="{% url 'signup' %}">Sign Up</a>
-                        </li> 
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'search' %}">Search</a>
+                            </li>
+                    
+                            <li class="nav-item">
+                                <span class="text-white mx-2">|</span>
+                            </li>
+                    
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'signup' %}">Sign Up</a>
+                            </li>
                         {% endif %}
                     </ul>
+                    
                 </div>
             </div>
         </nav>

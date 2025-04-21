@@ -1,7 +1,7 @@
 from django import forms
 
 class LinkForm(forms.Form):
-    url = forms.URLField(label="Link de la noticia", widget=forms.URLInput(attrs={
+    url = forms.URLField(label="News Link", widget=forms.URLInput(attrs={
         'class': 'form-control',
-        'placeholder': 'https://ejemplo.com/noticia',
+        'placeholder': 'https://example.com/news',
     }))

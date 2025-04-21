@@ -16,12 +16,12 @@ def verify_link(request):
 
 def process_link(request):
     if request.method == 'POST':
-        form = LinkForm(request.POST)
-        if form.is_valid():
-            url = form.cleaned_data['url']
+        url = request.POST.get('url')
+        if url:
             request.session['url'] = url
             return render(request, 'processing.html', {'url': url})
-    return redirect('verify_link')
+    return redirect('verification:verify_link')
+
 
 
 def show_result(request):

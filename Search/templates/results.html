@@ -14,7 +14,7 @@
                         {% for review in claim.claimReview %}
                             <p class="card-text">
                                 <strong>Verified by:</strong> {{ review.publisher.name }} <br>
-                                <strong>Rating:</strong> {{ review.textualRating }} <br>
+                                <strong>Review:</strong> {{ review.textualRating }} <br>
                                 <strong>Review Date:</strong> {{ review.reviewDate}} <br>
                                 {% if review.languageCode == 'en' %}
                                     <strong>Language:</strong> English<br>
@@ -30,7 +30,7 @@
                             </p>
                         {% endfor %}
                     {% else %}
-                        <p class="text-muted">No hay revisiones disponibles para esta afirmación.</p>
+                        <p class="text-muted"></p>No fact-checking results found for this query.</p>
                     {% endif %}
                 </div>
             </div>
