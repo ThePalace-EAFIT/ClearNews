@@ -59,13 +59,13 @@ def home_view(request):
 
         if response.status_code == 200:
             data = response.json()
-            print(f"🔍 Respuesta de la API en home_view: {data}")
+            print(f"API Answer: {data}")
             latest_news = data.get("claims", [])
         else:
-            print(f"❌ Error al llamar a la API: {response.status_code} - {response.text}")
+            print(f"Error: {response.status_code} - {response.text}")
             latest_news = []
     else:
-        print("⚠️ Clave API de Google no encontrada en el entorno")
+        print("API key not found in environment variables.")
 
     return render(request, 'home.html', {
         'authenticated': request.user.is_authenticated,

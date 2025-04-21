@@ -3,6 +3,9 @@
 <html lang="en">
 
 <head>
+    <!-- Google Fonts: Montserrat for headlines, Inter for body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClearNews</title>
@@ -11,16 +14,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    
     <style>
         body {
-            background: url('/static/images/background.jpg') no-repeat center center fixed;
-            background-size: cover;
+        background: 
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+            url('/static/images/background.jpg') no-repeat center center fixed;
+        background-size: cover;
         }
 
-        .navbar {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
+        .navbar,
         .navbar-brand,
         .nav-link {
             color: white !important;
@@ -45,9 +50,9 @@
 </head>
 
 <body>
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
+    <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-dark ">
+            <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}"> 
                     <img src="{% static 'images/logo.png' %}" alt="Logo" width="30" height="30" class="d-inline-block align-top">
                     ClearNews
@@ -56,46 +61,53 @@
                     <ul class="navbar-nav align-items-center">
                         {% if user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{% url 'verification:verify_link' %}">Verify</a>
+                                <a class="nav-link" href="{% url 'verification:verify_link' %}">Verify</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{% url 'search' %}">Search</a>
+                                <a class="nav-link" href="{% url 'search' %}">Search</a>
                             </li>
-                    
                             <li class="nav-item">
                                 <span class="text-white mx-2">|</span>
                             </li>
-                    
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{% url 'logout' %}">Logout  [{{ user.username }}] </a>
+                                <a class="nav-link" href="{% url 'logout' %}">Logout [{{ user.username }}]</a>
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{% url 'search' %}">Search</a>
+                                <a class="nav-link" href="{% url 'search' %}">Search</a>
                             </li>
-                    
                             <li class="nav-item">
                                 <span class="text-white mx-2">|</span>
                             </li>
-                    
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
-                            </li> 
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{% url 'signup' %}">Sign Up</a>
+                                <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
                             </li>
                         {% endif %}
-                    </ul>
-                    
+                    </ul> 
                 </div>
             </div>
         </nav>
-    </div>
 
-    <div class="container mt-4">
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow-1 container my-4">
         {% block content %}
         {% endblock content %}
-    </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="d-flex flex-column align-items-center">
+                <img src="{% static 'images/logo.png' %}" alt="ClearNews Logo" width="50" class="mb-1">
+                <h5 class="mb-1">ClearNews</h5>
+                <p class="mb-0">&copy; 2025 Created by Santiago Palacio & Santiago Velez</p>
+            </div>
+        </div>
+    </footer>
+    
 
 </body>
 

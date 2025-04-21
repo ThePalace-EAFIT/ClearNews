@@ -1,17 +1,54 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="card">
-        <div class="card-header bg-dark text-white">
-            Verification result
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Link evaluated:</h5>
-            <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
-            <h5 class="card-title">AI result:</h5>
-            <p>{{ result }}</p>
-        </div>
+<div class="card text-white bg-dark mb-4">
+    <div class="card-body">
+      <h4 class="card-title">Verification result</h4>
+      <p><strong>Link evaluated:</strong><br>
+        <a href="{{ url }}" class="text-info" target="_blank">{{ url }}</a>
+      </p>
+      <p><strong>AI result:</strong><br>{{ result }}</p>
     </div>
-</div>
+  </div>
+  
+  <div class="card text-white bg-secondary mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Information extracted from the link</h5>
+      <p><strong>Title:</strong> {{ title }}</p>
+      <p><strong>Author:</strong> {{ author }}</p>
+      <p><strong>Date of publication:</strong> {{ date }}</p>
+  
+      <p><strong>Text:</strong></p>
+      <div id="article-preview" class="mb-2">
+        {{ text|truncatechars:100 }}...
+      </div>
+  
+      <div id="article-full" style="display: none;">
+        <p>{{ text }}</p>
+      </div>
+  
+      <button class="btn btn-outline-light btn-sm" id="toggle-text">See more...</button>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const preview = document.getElementById("article-preview");
+      const full = document.getElementById("article-full");
+      const toggleBtn = document.getElementById("toggle-text");
+  
+      toggleBtn.addEventListener("click", function () {
+        if (full.style.display === "none") {
+          full.style.display = "block";
+          preview.style.display = "none";
+          toggleBtn.textContent = "See less...";
+        } else {
+          full.style.display = "none";
+          preview.style.display = "block";
+          toggleBtn.textContent = "See more...";
+        }
+      });
+    });
+  </script>
+  
 {% endblock %}
