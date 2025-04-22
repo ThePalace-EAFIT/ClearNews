@@ -2,19 +2,59 @@
 
 {% block content %}
 <div class="search-container">
-    <h1 class="text-white text-center shadow">Verify with AI</h1>
-    <form class="w-50" method="post" action="{% url 'verification:process_link' %}">
+    <h2 class="text-white text-center shadow">Verify with AI</h2>
+    <p class="text-white shadow text-sm mb-6">You can submit a link OR paste the full news article as text below.</p>
+    <form class="w-75 mx-auto" method="post" action="{% url 'verification:process_link' %}">
         {% csrf_token %}
-        <div class="input-group">
-            <input 
-                type="url" 
-                name="url" 
-                class="form-control" 
-                placeholder="Paste the news link here..." 
-                required 
-            >
-            <button class="btn btn-primary" type="submit">Verify</button>
+        <div class="mb-3">
+            {{ form.url.label_tag }}
+            {{ form.url }}
+            {% for error in form.url.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
         </div>
+        <div class="mb-3 position-relative">
+            {{ form.text.label_tag }}
+            {{ form.text }}
+            <small class="position-absolute bottom-0 end-0 me-2 mb-2" id="char-count" style="color: var(--dark-text); font-size: 0.8rem;">0 / 2000</small>
+            {% for error in form.text.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <div class="flex justify-center mt-4">
+            <button type="submit" class="btn btn-primary">
+              Verify
+            </button>
+          </div>  
     </form>
 </div>
+
+<style>
+    label {
+        color: white !important;
+    }
+</style>
+
+
+<script>
+    function updateCharCount(textarea) {
+        const count = textarea.value.length;
+        document.getElementById("char-count").textContent = `${count} / 2000`;
+    }
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        const textarea = document.getElementById("news-text");
+        if (textarea) {
+            updateCharCount(textarea);
+        }
+    });
+</script>
+    
 {% endblock %}
