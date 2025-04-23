@@ -4,9 +4,11 @@
   <div class="card text-white bg-dark mb-4">
     <div class="card-body">
       <h4 class="card-title">Verification result</h4>
+      {% if url %}
       <p><strong>Link evaluated:</strong><br>
         <a href="{{ url }}" class="text-info" target="_blank">{{ url }}</a>
       </p>
+      {% endif %}
       <p><strong>AI result:</strong></p>
       <div id="ai-result" class="bg-dark text-white p-3 rounded mb-2" style="white-space: pre-wrap;">
         {{ result }}
@@ -21,6 +23,7 @@
     </div>
   </div>
   
+  {% if url %}
   <div class="card text-white bg-secondary mb-4">
     <div class="card-body">
       <h5 class="card-title">Information extracted from the link</h5>
@@ -40,6 +43,7 @@
       <button class="btn btn-outline-light btn-sm" id="toggle-text">See more...</button>
     </div>
   </div>
+  {% endif %}
   
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -59,7 +63,7 @@
         }
       });
     });
-    
+
     function copyToClipboard() {
       const text = document.getElementById("ai-result").innerText;
       navigator.clipboard.writeText(text).then(function() {

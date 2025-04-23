@@ -131,7 +131,7 @@ def show_result(request):
     except Exception as e:
         result = f"There was an error querying the OpenAI API: {str(e)}"
 
-    score_match = re.search(r"Total Score:\s*(\d+)", result)
+    score_match = re.search(r"(?:Total Score|Score total)[:\s]*([0-9]{1,3})", result, re.IGNORECASE)
     score = int(score_match.group(1)) if score_match else 0
 
     AnalyzedNews.objects.create(
