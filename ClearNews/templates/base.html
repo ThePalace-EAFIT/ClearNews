@@ -71,6 +71,9 @@
                                 <span class="text-white mx-2">|</span>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{% url 'logout' %}">Logout [{{ user.username }}]</a>
                             </li>
                         {% else %}

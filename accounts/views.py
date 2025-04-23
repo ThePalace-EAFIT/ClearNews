@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
-from django.shortcuts import redirect
 from django.db import IntegrityError
+from django.db.models import Avg
+from verification.models import AnalyzedNews
 
 def signup_view(request):
     form = UserCreationForm()
@@ -36,3 +38,18 @@ def login_view(request):
         else:
             login(request, user)
             return redirect('search')
+        
+@login_required
+def dashboard(request):
+    user_news = AnalyzedNews.objects.filter(user=request.user).order_by('-created_at')
+
+    total_news = user_news.count()
+    average_score = user_news.aggregate(avg_score=Avg('score'))['avg_score'] or 0
+    average_score = round(average_score)
+
+    context = {
+        'news_list': user_news,
+        'total_news': total_news,
+        'average_score': average_score,
+    }
+    return render(request, 'dashboard.html', context)

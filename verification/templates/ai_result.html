@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="card text-white bg-dark mb-4">
+  <div class="card text-white bg-dark mb-4">
     <div class="card-body">
       <h4 class="card-title">Verification result</h4>
       <p><strong>Link evaluated:</strong><br>
@@ -59,19 +59,17 @@
         }
       });
     });
+    
+    function copyToClipboard() {
+      const text = document.getElementById("ai-result").innerText;
+      navigator.clipboard.writeText(text).then(function() {
+        const confirmation = document.getElementById("copy-confirmation");
+        confirmation.style.display = "inline";
+        setTimeout(() => confirmation.style.display = "none", 2000);
+      }, function(err) {
+        console.error("Error copying text: ", err);
+      });
+    }
   </script>
-  
-  <script>
-  function copyToClipboard() {
-    const text = document.getElementById("ai-result").innerText;
-    navigator.clipboard.writeText(text).then(function() {
-      const confirmation = document.getElementById("copy-confirmation");
-      confirmation.style.display = "inline";
-      setTimeout(() => confirmation.style.display = "none", 2000);
-    }, function(err) {
-      console.error("Error copying text: ", err);
-    });
-  }
-</script>
 
 {% endblock %}
