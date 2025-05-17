@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block content %}
 <div class="d-flex justify-content-center align-items-center" style="height: 70vh;">
     <div class="text-center text-white">
-        <h3 class="mb-3 fw-bold shadow">Analyzing information credibility...</h3>
-        <p class="mb-4">This may take a few seconds.</p>
+        <h3 class="mb-3 fw-bold shadow">{% trans "Analyzing information credibility..." %}</h3>
+        <p class="mb-4">{% trans "This may take a few seconds." %}</p>
         <div class="spinner-border text-light" role="status" style="width: 3rem; height: 3rem;">
-            <span class="visually-hidden">Loading...</span>
+            <span class="visually-hidden">{% trans "Loading..." %}</span>
         </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,34 +63,71 @@
                     <ul class="navbar-nav align-items-center">
                         {% if user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'verification:verify_link' %}">Verify</a>
+                                <a class="nav-link" href="{% url 'verification:verify_link' %}">{% trans "Verify" %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'search' %}">Search</a>
+                                <a class="nav-link" href="{% url 'search' %}">{% trans "Search" %}</a>
                             </li>
                             <li class="nav-item">
                                 <span class="text-white mx-2">|</span>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                                <a class="nav-link" href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'logout' %}">Logout [{{ user.username }}]</a>
+                                <a class="nav-link" href="{% url 'logout' %}">
+                                    {% trans "Logout" %}
+                                    <img src="{% static 'images/user_icon.png' %}" alt="User" style="height: 20px; vertical-align: middle; margin-left: -5px;">
+                                </a>
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'search' %}">Search</a>
+                                <a class="nav-link" href="{% url 'search' %}">{% trans "Search" %}</a>
                             </li>
                             <li class="nav-item">
                                 <span class="text-white mx-2">|</span>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                <a class="nav-link" href="{% url 'login' %}">{% trans "Login" %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                                <a class="nav-link" href="{% url 'signup' %}">{% trans "Sign Up" %}</a>
                             </li>
                         {% endif %}
+                        <li class="nav-item">
+                            <span class="text-white mx-2">|</span>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                🌐 {% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|upper }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                                <li>
+                                    <form action="{% url 'set_language' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="next" value="{{ request.path }}">
+                                        <input type="hidden" name="language" value="en">
+                                        <button class="dropdown-item" type="submit">English 🇺🇸</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form action="{% url 'set_language' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="next" value="{{ request.path }}">
+                                        <input type="hidden" name="language" value="es">
+                                        <button class="dropdown-item" type="submit">Español 🇪🇦</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form action="{% url 'set_language' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="next" value="{{ request.path }}">
+                                        <input type="hidden" name="language" value="pt">
+                                        <button class="dropdown-item" type="submit">Português 🇧🇷</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>                                              
                     </ul> 
                 </div>
             </div>
@@ -107,7 +145,7 @@
             <div class="d-flex flex-column align-items-center">
                 <img src="{% static 'images/logo.png' %}" alt="ClearNews Logo" width="50" class="mb-1">
                 <h5 class="mb-1">ClearNews</h5>
-                <p class="mb-0">&copy; 2025 Created by Santiago Palacio & Santiago Velez</p>
+                <p class="mb-0">&copy; 2025 {% trans "Created by Santiago Palacio & Santiago Velez" %}</p>
             </div>
         </div>
     </footer>

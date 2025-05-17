@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block content %}
 <div class="container my-4">
@@ -7,19 +8,19 @@
     <div class="row mb-4">
         <div class="col-md-4">
             <div class="bg-primary text-white p-3 rounded shadow-sm">
-                <h5>Total news</h5>
+                <h5>{% trans "Total news" %}</h5>
                 <h3>{{ total_news }}</h3>
             </div>
         </div>
         <div class="col-md-4">
             <div class="bg-success text-white p-3 rounded shadow-sm">
-                <h5>Average score</h5>
+                <h5>{% trans "Average score" %}</h5>
                 <h3>{{ average_score }}/100</h3>
             </div>
         </div>
         <div class="col-md-4">
             <div class="bg-light p-3 rounded shadow-sm">
-                <h5 class="mb-2">Score chart</h5>
+                <h5 class="mb-2">{% trans "Score chart" %}</h5>
                 <canvas id="scoreChart" width="100" height="60"></canvas>
             </div>
         </div>
@@ -27,22 +28,22 @@
 
     <!-- Filtros -->
     <div class="bg-white rounded shadow-sm p-3 mb-4">
-        <h5 class="mb-3">Filter news</h5>
+        <h5 class="mb-3">{% trans "Filter news" %}</h5>
         <form id="filter-form" class="row gy-2 gx-3 align-items-center">
             <div class="col-md-3">
-                <label class="form-label" for="min-date">From</label>
+                <label class="form-label" for="min-date">{% trans "From" %}</label>
                 <input type="date" class="form-control" id="min-date">
             </div>
             <div class="col-md-3">
-                <label class="form-label" for="max-date">To</label>
+                <label class="form-label" for="max-date">{% trans "To" %}</label>
                 <input type="date" class="form-control" id="max-date">
             </div>
             <div class="col-md-3">
-                <label class="form-label" for="min-score">Minimum score</label>
+                <label class="form-label" for="min-score">{% trans "Minimum score" %}</label>
                 <input type="number" class="form-control" id="min-score" placeholder="0 - 100" min="0" max="100">
             </div>
             <div class="col-md-3">
-                <label class="form-label" for="max-score">Maximum score</label>
+                <label class="form-label" for="max-score">{% trans "Maximum score" %}</label>
                 <input type="number" class="form-control" id="max-score" placeholder="0 - 100" min="0" max="100">
             </div>
         </form>
@@ -50,15 +51,15 @@
 
     <!-- Historial -->
     <div class="bg-white p-3 rounded shadow-sm">
-        <h4 class="mb-1">Verified news history</h4>
+        <h4 class="mb-1">{% trans "Verified news history" %}</h4>
         {% if news_list %}
         <div class="table-responsive">
             <table class="table table-hover table-bordered mt-4" id="news-table">
                 <thead class="table-dark">
                     <tr>
-                        <th>Title</th>
-                        <th>Score</th>
-                        <th>Date</th>
+                        <th>{% trans "Title" %}</th>
+                        <th>{% trans "Score" %}</th>
+                        <th>{% trans "Date" %}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -71,17 +72,17 @@
                         <td>
                             <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#analysis-{{ news.id }}">
-                                View analysis
+                                {% trans "View analysis" %}
                             </button>
                         </td>
                     </tr>
                     <tr class="collapse" id="analysis-{{ news.id }}">
                         <td colspan="4">
-                            <strong>IA result:</strong><br>
+                            <strong>{% trans "IA result:" %}</strong><br>
                             <pre class="text-wrap" id="ai-result">{{ news.explanation|linebreaksbr }}</pre>
                             <br><br>
                             <button class="btn btn-outline-dark btn-sm mb-3" onclick="copyToClipboard()">
-                                <i class="bi bi-clipboard"></i> Copy result
+                                <i class="bi bi-clipboard"></i> {% trans "Copy result" %}
                             </button>
                         </td>
                     </tr>
@@ -90,7 +91,7 @@
             </table>
         </div>
         {% else %}
-        <p>You haven't analyzed any news yet.</p>
+        <p>{% trans "You haven't analyzed any news yet." %}</p>
         {% endif %}
     </div>
 </div>

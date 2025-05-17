@@ -1,0 +1,319 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-17 22:36+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
+
+#: ClearNews/settings.py:113 ClearNews/templates/home.html:42
+#: Search/templates/results.html:21
+msgid "English"
+msgstr "Inglés"
+
+#: ClearNews/settings.py:114 ClearNews/templates/home.html:43
+#: Search/templates/results.html:23
+msgid "Spanish"
+msgstr "Español"
+
+#: ClearNews/settings.py:115 ClearNews/templates/home.html:44
+#: Search/templates/results.html:25
+msgid "Portuguese"
+msgstr "Portugués"
+
+#: ClearNews/templates/base.html:66 verification/templates/form.html:34
+msgid "Verify"
+msgstr "Verificar"
+
+#: ClearNews/templates/base.html:69 ClearNews/templates/base.html:85
+#: Search/templates/search.html:10
+msgid "Search"
+msgstr "Buscar"
+
+#: ClearNews/templates/base.html:75
+msgid "Dashboard"
+msgstr "Panel"
+
+#: ClearNews/templates/base.html:79
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+#: ClearNews/templates/base.html:91 accounts/templates/login.html:8
+#: accounts/templates/login.html:30
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: ClearNews/templates/base.html:94 accounts/templates/signup.html:34
+msgid "Sign Up"
+msgstr "Registrarse"
+
+#: ClearNews/templates/base.html:148
+msgid "Created by Santiago Palacio & Santiago Velez"
+msgstr "Creado por Santiago Palacio y Santiago Vélez"
+
+#: ClearNews/templates/home.html:7
+#, fuzzy, python-format
+#| msgid "Welcome %(user.username)s !"
+msgid " Welcome %(username)s !"
+msgstr "¡Bienvenido/a %(user.username)s!"
+
+#: ClearNews/templates/home.html:9
+msgid "Verify News"
+msgstr "Verificar noticias"
+
+#: ClearNews/templates/home.html:10 ClearNews/templates/home.html:15
+msgid "Search Verified News"
+msgstr "Buscar noticias verificadas"
+
+#: ClearNews/templates/home.html:13
+msgid "Welcome!"
+msgstr "¡Bienvenido/a!"
+
+#: ClearNews/templates/home.html:23
+msgid "Latest Verified News"
+msgstr "Últimas noticias verificadas"
+
+#: ClearNews/templates/home.html:28
+msgid "Verified by Google"
+msgstr "Verificado por Google"
+
+#: ClearNews/templates/home.html:33 ClearNews/templates/home.html:38
+#: ClearNews/templates/home.html:39 ClearNews/templates/home.html:40
+#: ClearNews/templates/home.html:45
+msgid "No data"
+msgstr "Sin datos"
+
+#: ClearNews/templates/home.html:38 ClearNews/templates/home.html:76
+#: Search/templates/results.html:17
+msgid "Verified by:"
+msgstr "Verificado por:"
+
+#: ClearNews/templates/home.html:39 Search/templates/results.html:18
+msgid "Review:"
+msgstr "Revisión:"
+
+#: ClearNews/templates/home.html:40 Search/templates/results.html:19
+msgid "Review Date:"
+msgstr "Fecha de revisión:"
+
+#: ClearNews/templates/home.html:41 Search/templates/results.html:21
+#: Search/templates/results.html:23 Search/templates/results.html:25
+#: Search/templates/results.html:27
+msgid "Language:"
+msgstr "Idioma:"
+
+#: ClearNews/templates/home.html:49 Search/templates/results.html:30
+msgid "See article"
+msgstr "Ver artículo"
+
+#: ClearNews/templates/home.html:51
+msgid "No article link available."
+msgstr "No hay enlace al artículo disponible."
+
+#: ClearNews/templates/home.html:55
+msgid "No fact-checking review data available."
+msgstr "No hay datos de verificación disponibles."
+
+#: ClearNews/templates/home.html:61
+msgid "No fact-checking results found."
+msgstr "No se encontraron resultados de verificación."
+
+#: ClearNews/templates/home.html:67
+msgid "Verified by our Users"
+msgstr "Verificado por nuestros usuarios"
+
+#: ClearNews/templates/home.html:74
+msgid "Credibility Score:"
+msgstr "Puntaje de credibilidad:"
+
+#: ClearNews/templates/home.html:75
+msgid "Date:"
+msgstr "Fecha:"
+
+#: ClearNews/templates/home.html:82
+msgid "No user verifications available."
+msgstr "No hay verificaciones de usuarios disponibles."
+
+#: Search/templates/results.html:6
+#, python-format
+msgid "Verification Results for: \"%(query)s\""
+msgstr "Resultados de verificación para: \"%(query)s\""
+
+#: Search/templates/results.html:34 Search/templates/results.html:40
+msgid "No fact-checking results found for this query."
+msgstr "No se encontraron resultados de verificación para esta búsqueda."
+
+#: Search/templates/search.html:6
+msgid "Search Already Verified News"
+msgstr "Buscar noticias ya verificadas"
+
+#: Search/templates/search.html:9
+msgid "Enter news headline or URL"
+msgstr "Ingrese el título o URL de la noticia"
+
+#: accounts/templates/dashboard.html:11
+msgid "Total news"
+msgstr "Total de noticias"
+
+#: accounts/templates/dashboard.html:17
+msgid "Average score"
+msgstr "Puntaje promedio"
+
+#: accounts/templates/dashboard.html:23
+msgid "Score chart"
+msgstr "Gráfico de puntuación"
+
+#: accounts/templates/dashboard.html:31
+msgid "Filter news"
+msgstr "Filtrar noticias"
+
+#: accounts/templates/dashboard.html:34
+msgid "From"
+msgstr "Desde"
+
+#: accounts/templates/dashboard.html:38
+msgid "To"
+msgstr "Hasta"
+
+#: accounts/templates/dashboard.html:42
+msgid "Minimum score"
+msgstr "Puntuación mínima"
+
+#: accounts/templates/dashboard.html:46
+msgid "Maximum score"
+msgstr "Puntuación máxima"
+
+#: accounts/templates/dashboard.html:54
+msgid "Verified news history"
+msgstr "Historial de noticias verificadas"
+
+#: accounts/templates/dashboard.html:60
+msgid "Title"
+msgstr "Título"
+
+#: accounts/templates/dashboard.html:61
+msgid "Score"
+msgstr "Puntuación"
+
+#: accounts/templates/dashboard.html:62
+#, fuzzy
+#| msgid "Date:"
+msgid "Date"
+msgstr "Fecha:"
+
+#: accounts/templates/dashboard.html:75
+msgid "View analysis"
+msgstr "Ver análisis"
+
+#: accounts/templates/dashboard.html:81
+msgid "IA result:"
+msgstr "Resultado IA:"
+
+#: accounts/templates/dashboard.html:85
+#: verification/templates/ai_result.html:21
+msgid "Copy result"
+msgstr "Copiar resultado"
+
+#: accounts/templates/dashboard.html:94
+msgid "You haven't analyzed any news yet."
+msgstr "Aún no has analizado ninguna noticia."
+
+#: accounts/templates/login.html:20 accounts/templates/signup.html:20
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: accounts/templates/login.html:25 accounts/templates/signup.html:25
+msgid "Password"
+msgstr "Contraseña"
+
+#: accounts/templates/signup.html:30
+msgid "Confirm Password"
+msgstr "Confirmar contraseña"
+
+#: verification/templates/ai_result.html:7
+msgid "Verification result"
+msgstr "Resultado de verificación"
+
+#: verification/templates/ai_result.html:9
+msgid "Link evaluated:"
+msgstr "Enlace evaluado:"
+
+#: verification/templates/ai_result.html:13
+msgid "AI result:"
+msgstr "Resultado de IA:"
+
+#: verification/templates/ai_result.html:17
+msgid "Disclaimer:"
+msgstr "Aviso legal:"
+
+#: verification/templates/ai_result.html:17
+#, python-format
+msgid ""
+"This result was generated by AI and may not be 100%% accurate. Always double-"
+"check with official sources."
+msgstr ""
+"Este resultado fue generado por IA y puede no ser 100%% preciso. Siempre "
+"verifique con fuentes oficiales."
+
+#: verification/templates/ai_result.html:23
+msgid "Copied!"
+msgstr "¡Copiado!"
+
+#: verification/templates/ai_result.html:30
+msgid "Information extracted from the link"
+msgstr "Información extraída del enlace"
+
+#: verification/templates/ai_result.html:31
+msgid "Title:"
+msgstr "Título:"
+
+#: verification/templates/ai_result.html:32
+msgid "Author:"
+msgstr "Autor/a:"
+
+#: verification/templates/ai_result.html:33
+msgid "Date of publication:"
+msgstr "Fecha de publicación:"
+
+#: verification/templates/ai_result.html:34
+msgid "Text:"
+msgstr "Texto:"
+
+#: verification/templates/ai_result.html:43
+msgid "See more..."
+msgstr "Ver más..."
+
+#: verification/templates/form.html:6
+msgid "Verify with AI"
+msgstr "Verificar con IA"
+
+#: verification/templates/form.html:7
+msgid "You can submit a link OR paste the full news article as text below."
+msgstr ""
+"Puedes enviar un enlace O pegar el artículo completo como texto a "
+"continuación."
+
+#: verification/templates/processing.html:6
+msgid "Analyzing information credibility..."
+msgstr "Analizando la credibilidad de la información..."
+
+#: verification/templates/processing.html:7
+msgid "This may take a few seconds."
+msgstr "Esto puede tardar unos segundos."
+
+#: verification/templates/processing.html:9
+msgid "Loading..."
+msgstr "Cargando..."

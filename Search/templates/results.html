@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 <div class="container">
-    <h1 class="text-white text-center shadow my-4">Verification Results for: "{{ query }}"</h1>
+    <h1 class="text-white text-center shadow my-4">{% blocktrans %}Verification Results for: "{{ query }}"{% endblocktrans %}</h1>
 
     {% if results %}
         {% for claim in results %}
@@ -13,30 +14,30 @@
                     {% if claim.claimReview %}
                         {% for review in claim.claimReview %}
                             <p class="card-text">
-                                <strong>Verified by:</strong> {{ review.publisher.name }} <br>
-                                <strong>Review:</strong> {{ review.textualRating }} <br>
-                                <strong>Review Date:</strong> {{ review.reviewDate}} <br>
+                                <strong>{% trans "Verified by:" %}</strong> {{ review.publisher.name }} <br>
+                                <strong>{% trans "Review:" %}</strong> {{ review.textualRating }} <br>
+                                <strong>{% trans "Review Date:" %}</strong> {{ review.reviewDate}} <br>
                                 {% if review.languageCode == 'en' %}
-                                    <strong>Language:</strong> English<br>
+                                    <strong>{% trans "Language:" %}</strong> {% trans "English" %}<br>
                                 {% elif review.languageCode == 'es' %}
-                                    <strong>Language:</strong> Spanish<br>
+                                    <strong>{% trans "Language:" %}</strong> {% trans "Spanish" %}<br>
                                 {% elif review.languageCode == 'pt' %}
-                                    <strong>Language:</strong> Portuguese<br>
+                                    <strong>{% trans "Language:" %}</strong> {% trans "Portuguese" %}<br>
                                 {% else %}
-                                    <strong>Language:</strong> {{ review.languageCode }}<br>
+                                    <strong>{% trans "Language:" %}</strong> {{ review.languageCode }}<br>
                                 {% endif %}
 
-                                <a href="{{ review.url }}" target="_blank" class="btn btn-primary mt-3">See article</a>
+                                <a href="{{ review.url }}" target="_blank" class="btn btn-primary mt-3">{% trans "See article" %}</a>
                             </p>
                         {% endfor %}
                     {% else %}
-                        <p class="text-muted"></p>No fact-checking results found for this query.</p>
+                        <p class="text-muted"></p>{% trans "No fact-checking results found for this query." %}</p>
                     {% endif %}
                 </div>
             </div>
         {% endfor %}
     {% else %}
-        <p class="text-white text-center">No fact-checking results found for this query.</p>
+        <p class="text-white text-center">{% trans "No fact-checking results found for this query." %}</p>
     {% endif %}
 </div>
 {% endblock content %}

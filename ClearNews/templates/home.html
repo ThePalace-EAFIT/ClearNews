@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 <div class="container text-center text-white" style="margin-top: 200px; margin-bottom: 150px;">
     {% if authenticated %}
-        <h1 class="shadow">Welcome {{ user.username }} !</h1>
+        <h1 class="shadow">{% blocktrans with username=user.username %} Welcome {{ username }} !{% endblocktrans %}</h1>
         <div class="d-flex justify-content-center gap-3 mb-4"></div>
-            <a href="{% url 'verification:verify_link' %}" class="btn btn-primary mt-2">Verify News</a>
-            <a href="{% url 'search' %}" class="btn btn-primary mt-2">Search Verified News</a>
+            <a href="{% url 'verification:verify_link' %}" class="btn btn-primary mt-2">{% trans "Verify News" %}</a>
+            <a href="{% url 'search' %}" class="btn btn-primary mt-2">{% trans "Search Verified News" %}</a>
         </div>
     {% else %}
-        <h1 class="shadow">Welcome!</h1>
+        <h1 class="shadow">{% trans "Welcome!" %}</h1>
         <div class="d-flex justify-content-center gap-3 mb-4"></div>
-            <a href="{% url 'search' %}" class="btn btn-primary mt-2">Search Verified News</a>
+            <a href="{% url 'search' %}" class="btn btn-primary mt-2">{% trans "Search Verified News" %}</a>
         </div>
     {% endif %}
 </div>
@@ -19,48 +20,69 @@
 <hr style="border-top: 5px solid #ffffff; width: 70%; margin: 20px auto 40px auto;">
 
 <div class="container mt-5">
-    <h2 class="text-white text-center shadow my-4">Latest Verified News</h2>
+    <h2 class="text-white text-center shadow my-4">{% trans "Latest Verified News" %}</h2>
 
-    {% if latest_news %}
-        {% for claim in latest_news %}
-            <div class="card my-3 shadow-lg">
-                <div class="card-body">
-                    <h5 class="card-title">{{ claim.text|default:"No data" }}</h5>
+    <div class="row">
+        <!-- Verified by Google -->
+        <div class="col-md-6 border-end border-light pe-4">
+            <h4 class="text-white text-center mb-3">{% trans "Verified by Google" %}</h4>
+            {% if latest_news %}
+                {% for claim in latest_news %}
+                    <div class="card mb-4 h-20" style="min-height: 280px;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ claim.text|default:_("No data") }}</h5>
 
-                    {% if claim.claimReview %}
-                        {% for review in claim.claimReview %}
+                            {% if claim.claimReview %}
+                                {% for review in claim.claimReview %}
+                                    <p class="card-text mb-1">
+                                        <strong>{% trans "Verified by:" %}</strong> {{ review.publisher.name|default:_("No data") }}<br>
+                                        <strong>{% trans "Review:" %}</strong> {{ review.textualRating|default:_("No data") }}<br>
+                                        <strong>{% trans "Review Date:" %}</strong> {{ review.reviewDate|default:_("No data") }}<br>
+                                        <strong>{% trans "Language:" %}</strong>
+                                        {% if review.languageCode == 'en' %}{% trans "English" %}
+                                        {% elif review.languageCode == 'es' %}{% trans "Spanish" %}
+                                        {% elif review.languageCode == 'pt' %}{% trans "Portuguese" %}
+                                        {% else %}{{ review.languageCode|default:_("No data") }}
+                                        {% endif %}
+                                    </p>
+                                    {% if review.url %}
+                                        <a href="{{ review.url }}" target="_blank" class="btn btn-primary btn-sm mt-2">{% trans "See article" %}</a>
+                                    {% else %}
+                                        <p class="text-muted">{% trans "No article link available." %}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <p class="text-muted">{% trans "No fact-checking review data available." %}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-white text-center">{% trans "No fact-checking results found." %}</p>
+            {% endif %}
+        </div>
+
+        <!-- Verified by our Users -->
+        <div class="col-md-6 ps-4">
+            <h4 class="text-white text-center mb-3">{% trans "Verified by our Users" %}</h4>
+            {% if user_verifications %}
+                {% for news in user_verifications %}
+                    <div class="card mb-4 h-20" style="min-height: 280px;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ news.title }}</h5>
                             <p class="card-text">
-                                <strong>Verified by:</strong> {{ review.publisher.name|default:"No data" }} <br>
-                                <strong>Review:</strong> {{ review.textualRating|default:"No data" }} <br>
-                                <strong>Review Date:</strong> {{ review.reviewDate|default:"No data" }} <br>
-                                
-                                {% if review.languageCode == 'en' %}
-                                    <strong>Language:</strong> English<br>
-                                {% elif review.languageCode == 'es' %}
-                                    <strong>Language:</strong> Spanish<br>
-                                {% elif review.languageCode == 'pt' %}
-                                    <strong>Language:</strong> Portuguese<br>
-                                {% else %}
-                                    <strong>Language:</strong> {{ review.languageCode|default:"No data" }}<br>
-                                {% endif %}
-
-                                {% if review.url %}
-                                    <a href="{{ review.url }}" target="_blank" class="btn btn-primary mt-3">See article</a>
-                                {% else %}
-                                    <p class="text-muted">No article link available.</p>
-                                {% endif %}
+                                <strong>{% trans "Credibility Score:" %}</strong> {{ news.score }}/100<br>
+                                <strong>{% trans "Date:" %}</strong> {{ news.date }}<br>
+                                <strong>{% trans "Verified by:" %}</strong> {{ news.user }}
                             </p>
-                        {% endfor %}
-                    {% else %}
-                        <p class="text-muted">No fact-checking review data available.</p>
-                    {% endif %}
-                </div>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p class="text-white text-center">No fact-checking results found.</p>
-    {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-white text-center">{% trans "No user verifications available." %}</p>
+            {% endif %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}
-

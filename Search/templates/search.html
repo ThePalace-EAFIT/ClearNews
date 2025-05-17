@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 <div class="search-container">
-    <h1 class="text-white text-center shadow">Search Already Verified News</h1>
+    <h1 class="text-white text-center shadow">{% trans "Search Already Verified News" %}</h1>
     <form class="w-50" action="{% url 'loading_view' %}" method="GET">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Enter news headline or URL" name="verifyNew">
-            <button class="btn btn-primary" type="submit">Search</button>
+            <input type="text" class="form-control" placeholder="{% trans 'Enter news headline or URL' %}" name="verifyNew">
+            <button class="btn btn-primary" type="submit">{% trans "Search" %}</button>
         </div>
     </form>
 </div>

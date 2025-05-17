@@ -28,7 +28,7 @@ def process_link(request):
             request.session['text'] = text or ''
             return render(request, 'processing.html', {'url': url if url else None})
         else:
-            # Form no válido: re-renderizar con errores
+            # Form no válido
             return render(request, 'form.html', {'form': form})
     return redirect('verification:verify_link')
 
@@ -96,7 +96,20 @@ def show_result(request):
         return redirect('verification:verify_link')
 
     # Prompt para OpenAI
-    prompt = f"""
+
+    # Idioma del usuario
+    idioma = request.LANGUAGE_CODE
+
+    if idioma == 'es':
+        lang_instruction = "Responde en español."
+    elif idioma == 'pt':
+        lang_instruction = "Responda em português."
+    else:
+        lang_instruction = "Respond in English."
+
+
+
+    prompt = f"""{lang_instruction}
         News Title: {title}
         Author: {author}
         Publication Date: {date}

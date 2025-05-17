@@ -2,7 +2,8 @@ from django.shortcuts import render
 import requests
 import os
 from dotenv import load_dotenv
-from django.contrib.auth.decorators import login_required   
+from django.contrib.auth.decorators import login_required
+from verification.models import AnalyzedNews   
 
 from .models import New
 
@@ -46,6 +47,7 @@ def loading_view(request):
     return render(request, "results.html", {"query": query, "results": None})
 
 def home_view(request):
+    user_verifications = AnalyzedNews.objects.order_by('-created_at')[:5]
     api_key = os.environ.get("google_apikey")
     latest_news = []
 
@@ -70,5 +72,7 @@ def home_view(request):
     return render(request, 'home.html', {
         'authenticated': request.user.is_authenticated,
         'user': request.user,
-        'latest_news': latest_news
+        'latest_news': latest_news,
+        'user_verifications': user_verifications,
+        'news_pairs': zip(latest_news, user_verifications)
     })
