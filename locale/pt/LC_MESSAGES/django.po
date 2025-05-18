@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-17 22:36+0000\n"
+"POT-Creation-Date: 2025-05-18 11:49-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -241,6 +241,32 @@ msgstr "Senha"
 #: accounts/templates/signup.html:30
 msgid "Confirm Password"
 msgstr "Confirmar senha"
+
+#: verification/forms.py:7
+msgid "News Link"
+msgstr "Link de notícias"
+
+#: verification/forms.py:10
+msgid "https://example.com/news"
+msgstr "https://exemplo.com/notícias"
+
+#: verification/forms.py:15
+#, fuzzy
+#| msgid "Text:"
+msgid "Text"
+msgstr "Texto:"
+
+#: verification/forms.py:22
+msgid "Or enter the news you want to verify here..."
+msgstr "Ou insira aqui a notícia que deseja verificar..."
+
+#: verification/forms.py:33
+msgid "You must enter either a URL or some text to verify."
+msgstr ""
+
+#: verification/forms.py:36
+msgid "Text cannot exceed 2000 characters."
+msgstr "Você deve inserir uma URL ou algum texto para verificar."
 
 #: verification/templates/ai_result.html:7
 msgid "Verification result"

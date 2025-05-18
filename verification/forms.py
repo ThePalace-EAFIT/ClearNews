@@ -1,24 +1,25 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 class VerificationForm(forms.Form):
     url = forms.URLField(
         required=False,
-        label="News Link",
+        label=_("News Link"),
         widget=forms.URLInput(attrs={
             'class': 'form-control',
-            'placeholder': 'https://example.com/news',
+            'placeholder': _('https://example.com/news'),
         })
     )
     text = forms.CharField(
         required=False,
-        label="Text",
+        label=_("Text"),
         widget=forms.Textarea(attrs={
             'class': 'form-control',
             'rows': 6,
             'maxlength': '2000',
             'oninput': 'updateCharCount(this)',
             'id': 'news-text',
-            'placeholder': 'Or enter the news you want to verify here...',
+            'placeholder': _('Or enter the news you want to verify here...'),
     })
 )
 
@@ -29,7 +30,7 @@ class VerificationForm(forms.Form):
         text = cleaned_data.get('text')
 
         if not url and not text:
-            raise forms.ValidationError("You must enter either a URL or some text to verify.")
+            raise forms.ValidationError(_("You must enter either a URL or some text to verify."))
 
         if text and len(text) > 2000:
-            self.add_error('text', "Text cannot exceed 2000 characters.")
+            self.add_error('text', _("Text cannot exceed 2000 characters."))
